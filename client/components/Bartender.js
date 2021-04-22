@@ -1,11 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { updateCocktails } from '../store/cocktails';
-import { select, reset } from '../store/selections';
-import { updateTags } from '../store/tags';
-import { getCocktail } from '../store/singleCocktail';
-import Like from './like';
-import Dislike from './dislike';
+import Dislike from './dislike'
+import { likeTag, dislikeTag, ignoreTag, reset} from '../store/bartender';
 import { mainSentence } from './communications';
 
 class Bartender extends React.Component {
@@ -14,71 +10,64 @@ class Bartender extends React.Component {
     this.state = { initial: true };
     this.handleClick = this.handleClick.bind(this);
     this.toggleResults = this.toggleResults.bind(this);
-    this.update = this.update.bind(this);
     this.reset = this.reset.bind(this);
+    this.nextTag = this.nextTag.bind(this)
   }
-  componentDidMount() {
-    this.update();
+  nextTag() {
+    let n = Object.keys(this.props.cocktails).length
+    if (n === 0) return { tag: 'Still Loading' }
+    let next = { id: 0, score: n}
+    Object.values(this.props.tags).forEach(tag => {
+      if (tag.selection === 'none') {
+        const score = Math.abs(n / 2 - Object.keys(tag.cocktails).length)
+        if (score < next.score) next = {id: tag.id, score}
+      }
+    })
+    return this.props.tags[next.id]
   }
-  handleClick(preference) {
+  handleClick(tag, preference) {
     this.setState({ initial: false });
-    const tag = this.props.tags[0];
-    this.props.makeSelection(tag, preference);
-    this.update();
+    this.props[preference](tag.id);
   }
-  async toggleResults() {
-    try {
-      const { cocktails } = this.props;
-      const count = cocktails.length;
-      const id = cocktails[Math.floor(Math.random() * count)].id;
-      await this.props.getCocktail(id);
-      this.props.history.push('/cocktails/' + id);
-    } catch (err) {
-      console.error(err);
-    }
-  }
-  async update() {
-    try {
-      await this.props.updateCocktails();
-      await this.props.updateTags();
-    } catch (err) {
-      console.error(err);
-    }
+  toggleResults() {
+    const cocktails = Object.values(this.props.cocktails)
+    const count = cocktails.length;
+    const idx = Math.floor(Math.random() * count);
+    this.props.history.push('/cocktails/' + cocktails[idx].id);
   }
   reset() {
     this.props.reset();
-    this.update();
   }
   render() {
-    const tag = this.props.tags[0] || { tag: 'Still Loading' };
-    const cocktails = this.props.cocktails || Array(6).fill(0);
+    const tag = this.nextTag()
+    const cocktailCount = Object.keys(this.props.cocktails).length
     const { initial } = this.state;
-    const phrase = cocktails.length
+    const phrase = cocktailCount
       ? mainSentence(tag, initial)
       : `Unfortunately, we don't have any cocktails meeting all those criteria. Please reset.`;
     return (
       <div>
-        <div id='prompt_window'>
-          <div className='thought'>{phrase}</div>
-          <div id='options'>
+        <div id="prompt_window">
+          <div className="thought">{phrase}</div>
+          <div id="options">
             <img
-              src='/media/heart.png'
-              onClick={() => this.handleClick('likes')}
-              id='heart'
+              src="/media/heart.png"
+              onClick={() => this.handleClick(tag, 'like')}
+              id="heart"
             />
-            <Dislike handleClick={this.handleClick} />
+            <Dislike tag = {tag} handleClick={this.handleClick} />
             <img
-              src='/media/untitled.png'
-              onClick={() => this.handleClick('ignores')}
-              id='ignores'
+              src="/media/untitled.png"
+              onClick={() => this.handleClick(tag, 'ignore')}
+              id="ignores"
             />
           </div>
         </div>
-        {cocktails.length < 6 && cocktails.length > 0 ? (
+        {cocktailCount < 6 && cocktailCount > 0 ? (
           <img
-            src='/media/thirsty.svg'
+            src="/media/thirsty.svg"
             onClick={this.toggleResults}
-            id='results'
+            id="results"
           />
         ) : (
           ''
@@ -95,10 +84,9 @@ const mapState = (state) => ({
 });
 
 const mapDispatch = (dispatch) => ({
-  makeSelection: (tag, preference) => dispatch(select(tag, preference)),
-  updateTags: () => dispatch(updateTags()),
-  updateCocktails: () => dispatch(updateCocktails()),
-  getCocktail: (id) => dispatch(getCocktail(id)),
+  like: (tag) => dispatch(likeTag(tag)),
+  dislike: (tag) => dispatch(dislikeTag(tag)),
+  ignore: (tag) => dispatch(ignoreTag(tag)),
   reset: () => dispatch(reset()),
 });
 

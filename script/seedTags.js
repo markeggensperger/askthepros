@@ -1,4 +1,4 @@
-module.exports = [
+export default [
   { tag: 'Whiskey', type: 'ingredient' },
   { tag: 'Gin', type: 'ingredient' },
   { tag: 'Rum', type: 'ingredient' },
@@ -25,3 +25,4 @@ module.exports = [
   { tag: 'Silky', type: 'adjective' },
   { tag: 'Rich', type: 'adjective' },
 ];
+

@@ -1,4 +1,4 @@
-module.exports = [
+export default [
   {
     name: `The Alamagoozlum Cocktail`,
     directions: `0.5 egg white, 2.0 ounces genever gin, 2.0 ounces water, 1.5 ounces Jamaican rum, 1.5 ounces yellow or green Chartreuse, 1.5 ounces gomme syrup, 0.5 ounce orange curaçao, 0.5 ounce Angostura bitters`,

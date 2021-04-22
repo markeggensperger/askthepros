@@ -6,10 +6,10 @@ import {
   NavLink,
   Switch,
 } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { updateTags } from '../store/tags';
-import { updateCocktails } from '../store/cocktails';
-import { getAllTags } from '../store/allTags';
+// import { connect } from 'react-redux';
+// import { updateTags } from '../store/tags';
+// import { updateCocktails } from '../store/cocktails';
+// import { getAllTags } from '../store/allTags';
 import Sidebar from './SideBar';
 import AllTags from './AllTags';
 import Bartender from './Bartender';
@@ -23,17 +23,6 @@ import RocksGlass from './rocksGlass';
 class Routes extends React.Component {
   constructor(props) {
     super(props);
-  }
-  async componentDidMount() {
-    try {
-      await Promise.all([
-        this.props.getTags(),
-        this.props.getCocktails(),
-        this.props.getAllTags(),
-      ]);
-    } catch (err) {
-      console.error(err);
-    }
   }
   render() {
     return (
@@ -54,12 +43,4 @@ class Routes extends React.Component {
   }
 }
 
-const mapDispatch = (dispatch) => {
-  return {
-    getTags: () => dispatch(updateTags()),
-    getCocktails: () => dispatch(updateCocktails()),
-    getAllTags: () => dispatch(getAllTags()),
-  };
-};
-
-export default connect(null, mapDispatch)(Routes);
+export default Routes;

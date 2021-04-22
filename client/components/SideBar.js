@@ -1,11 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { getCocktail } from '../store/singleCocktail';
-import { getTag } from '../store/singleTag';
-import { updateTags } from '../store/tags';
-import { updateCocktails } from '../store/cocktails';
-import { reset } from '../store/selections';
+import { Link, withRouter } from 'react-router-dom';
+import {reset} from '../store/bartender'
 
 class Sidebar extends React.Component {
   constructor(props) {
@@ -14,63 +10,47 @@ class Sidebar extends React.Component {
     this.toggleResults = this.toggleResults.bind(this);
     this.reset = this.reset.bind(this);
   }
-  async selectTag(evt) {
-    try {
-      const id = evt.target.id;
-      await this.props.getTag(id);
-      this.props.history.push('/tags/' + id);
-      this.props.toggleMenu();
-    } catch (err) {
-      console.error(err);
-    }
+  selectTag(evt) {
+    const id = evt.target.id;
+    this.props.history.push('/tags/' + id);
+    this.props.toggleMenu();
   }
-  async reset() {
-    try {
-      this.props.reset();
-      await this.props.updateCocktails();
-      await this.props.updateTags();
-      this.props.toggleMenu();
-    } catch (err) {
-      console.error(err);
-    }
+  reset() {
+    this.props.reset();
+    this.props.toggleMenu();
   }
-  async toggleResults() {
-    try {
-      const { cocktails } = this.props;
-      const count = cocktails.length;
-      const id = cocktails[Math.floor(Math.random() * count)].id;
-      await this.props.getCocktail(id);
-      this.props.history.push('/cocktails/' + id);
-      this.props.toggleMenu();
-    } catch (err) {
-      console.error(err);
-    }
+  toggleResults() {
+    const cocktails = Object.values(this.props.cocktails)
+    const count = cocktails.length;
+    const idx = Math.floor(Math.random() * count);
+    this.props.history.push('/cocktails/' + cocktails[idx].id);
+    this.props.toggleMenu();
   }
   render() {
-    const count = this.props.cocktails.length || 0;
-    const selectionList = this.props.selections.all || [];
+    const count = Object.keys(this.props.cocktails).length
+    const selectionList = this.props.selections.all;
     const close = this.props.toggleMenu;
     return (
-      <div id='sidebar'>
-        <div id='side_navigation'>
+      <div id="sidebar">
+        <div id="side_navigation">
           <h3>
-            <Link to='/' onClick={() => close()}>
+            <Link to="/" onClick={() => close()}>
               Talk to the bartenders
             </Link>
           </h3>
           <h3>
-            <Link to='/tags' onClick={() => close()}>
+            <Link to="/tags" onClick={() => close()}>
               All cocktail tags
             </Link>
           </h3>
         </div>
-        <div id='side_results'>
+        <div id="side_results">
           <h5>Found {count} cocktails</h5>
-          <h5>with seleections:</h5>
-          {selectionList.map((selection) => (
-            <h6 key={selection.id}>
-              <a id={selection.id} onClick={this.selectTag}>
-                {selection.tag} ({selection.preference})
+          <h5>with selections:</h5>
+          {selectionList.map((tag) => (
+            <h6 key={tag.id}>
+              <a id={tag.id} onClick={this.selectTag}>
+                {tag.tag} ({tag.selection})
               </a>
             </h6>
           ))}
@@ -93,11 +73,7 @@ const mapState = (state) => ({
   cocktails: state.cocktails,
 });
 const mapDispatch = (dispatch) => ({
-  getTag: (id) => dispatch(getTag(id)),
-  getCocktail: (id) => dispatch(getCocktail(id)),
-  updateTags: () => dispatch(updateTags()),
-  updateCocktails: () => dispatch(updateCocktails()),
   reset: () => dispatch(reset()),
 });
 
-export default connect(mapState, mapDispatch)(Sidebar);
+export default connect(mapState, mapDispatch)(withRouter(Sidebar))

@@ -1,27 +1,16 @@
-import axios from 'axios';
+import cocktailSeed from '../../script/seedCocktails'
 
 const SET_COCKTAIL = 'SET_COCKTAIL';
 
-const setCocktail = (cocktail) => ({
+export const setCocktail = (id) => ({
   type: SET_COCKTAIL,
-  cocktail,
+  id,
 });
-
-export const getCocktail = (id) => {
-  return async (dispatch) => {
-    try {
-      const { data } = await axios.get('/api/cocktails/' + id);
-      dispatch(setCocktail(data));
-    } catch (err) {
-      console.error(err);
-    }
-  };
-};
 
 export default (state = {}, action) => {
   switch (action.type) {
     case SET_COCKTAIL:
-      return action.cocktail;
+      return cocktailSeed[action.id - 1];
     default:
       return state;
   }

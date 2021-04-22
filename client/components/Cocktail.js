@@ -1,39 +1,27 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { getCocktail } from '../store/singleCocktail';
 import { Link } from 'react-router-dom';
+import cocktailSeed from '../../script/seedCocktails'
+import tagSeed from '../../script/seedTags'
 
 class Cocktail extends React.Component {
   constructor(props) {
     super(props);
   }
-  async componentDidMount() {
-    try {
-      const id = this.props.match.params.id;
-      await this.props.getCocktail(id);
-    } catch (err) {
-      console.error(err);
-    }
-  }
   render() {
-    let name = '';
-    let directions = [];
-    let tags = [];
-    if (this.props.cocktail.id) {
-      name = this.props.cocktail.name;
-      directions = this.props.cocktail.directions.split(',');
-      tags = this.props.cocktail.tags;
-    }
+    const cocktail = cocktailSeed[this.props.match.params.id - 1]
+    const {name} = cocktail
+    const directions = cocktail.directions.split(',')
+    const tags = cocktail.tagIds.map((id) => tagSeed[id - 1])
     return (
-      <div className='cocktailData'>
+      <div className="cocktailData">
         <h1>{name}</h1>
         <h3>Ingredients:</h3>
         {directions.map((ingredient, idx) => (
           <h5 key={idx}>{ingredient}</h5>
         ))}
-        <div className='tagBox'>
+        <div className="tagBox">
           {tags.map((tag) => (
-            <div className='tag' key={tag.id}>
+            <div className="tag" key={tag.id}>
               <Link to={`/tags/${tag.id}`}>{tag.tag}</Link>
             </div>
           ))}
@@ -43,12 +31,4 @@ class Cocktail extends React.Component {
   }
 }
 
-const mapState = (state) => ({
-  cocktail: state.singleCocktail,
-});
-
-const mapDispatch = (dispatch) => ({
-  getCocktail: (id) => dispatch(getCocktail(id)),
-});
-
-export default connect(mapState, mapDispatch)(Cocktail);
+export default Cocktail
