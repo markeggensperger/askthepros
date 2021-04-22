@@ -9,7 +9,7 @@ export default [
   { tag: 'Frothy', type: 'adjective' },
   { tag: 'Smokey', type: 'adjective' },
   { tag: 'Spicy', type: 'adjective' },
-  { tag: 'Tart', type: 'adjective' },
+  { tag: 'Sour', type: 'adjective' },
   { tag: 'Sweet', type: 'adjective' },
   { tag: 'Spirit Forward', type: 'adjective' },
   { tag: 'Classic', type: 'adjective' },

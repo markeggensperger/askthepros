@@ -6,7 +6,7 @@ export const mainSentence = (tagObj, initial = false) => {
   const tagFlavors = ingredient ? tagL : `${tagL} flavors`;
   const marksFav = ['Whiskey', 'Gin', 'Dry', 'Spirit Foreward'];
   if (initial) {
-    return `We are here to find the best cocktail for you. What seperates cocktails the most is the flavor of ${tagL}. Do you like cocktails that ${tagPhrase}?`;
+    return `We are here to find the best cocktail for you. What separates cocktails the most is the flavor of ${tagL}. Do you like cocktails that ${tagPhrase}?`;
   }
   const phrases = [
     `Some great cocktails ${tagPhrase}, how do you feel about ${tagL} cocktails?`,

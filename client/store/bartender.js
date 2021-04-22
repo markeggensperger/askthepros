@@ -77,7 +77,7 @@ export default (state = initialState, action) => {
       likes.push(action.tagId)
       tags[action.tagId].selection = 'likes'
       all.push(tags[action.tagId])
-      Object.values(state.cocktails).forEach(cocktail => {
+      Object.values(cocktails).forEach(cocktail => {
         if (!cocktail.tags[action.tagId]) {
           for (let tagId of Object.keys(cocktail.tags)) {
             delete tags[tagId].cocktails[cocktail.id]
@@ -90,7 +90,7 @@ export default (state = initialState, action) => {
       dislikes.push(action.tagId)
       tags[action.tagId].selection = 'dislikes'
       all.push(tags[action.tagId])
-      Object.values(state.cocktails).forEach(cocktail => {
+      Object.values(cocktails).forEach(cocktail => {
         if (cocktail.tags[action.tagId]) {
           for (let tagId of Object.keys(cocktail.tags)) {
             delete tags[tagId].cocktails[cocktail.id]
@@ -101,9 +101,9 @@ export default (state = initialState, action) => {
       return {cocktails, tags, selections: {...state.selections, dislikes, all}}
     case IGNORE:
       // ignores.push(action.tagId)
-      tags[action.tagId] = 'ignores'
+      tags[action.tagId].selection = 'ignores'
       all.push(tags[action.tagId])
-      return {...state, cocktails, tags}
+      return {cocktails, tags, selections: {...state.selections, all}}
     case ALTER_LIKE:
       let likeIdx = likes.indexOf(action.tagId)
       likes.splice(likeIdx, 1)

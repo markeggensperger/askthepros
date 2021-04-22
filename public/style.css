@@ -109,9 +109,7 @@ body {
   border-radius: 10px;
   margin: 5px;
 }
-.tag_header:hover {
-  cursor: pointer;
-}
+
 .likes {
   background-color: green;
 }
@@ -267,14 +265,7 @@ a:active {
   flex-direction: row;
   justify-content: space-around;
 }
-#heart:hover {
-  animation: 3s Infinite linear heartbeat;
-  animation-delay: 0s, 1s;
-}
-#dislike:hover {
-  animation: 3s Infinite linear heartbeat;
-  animation-delay: 0s, 1s;
-}
+
 #dislike_box {
   height: 150px;
   width: 150px;
@@ -286,10 +277,7 @@ a:active {
 #dislike {
   margin: auto;
 }
-#ignores:hover {
-  animation: 3s Infinite linear heartbeat;
-  animation-delay: 0s, 1s;
-}
+
 #reset {
   position: absolute;
   bottom: 0;
@@ -306,9 +294,7 @@ a:active {
   cursor: pointer;
 }
 
-#sidebar a:hover {
-  border-bottom: 2px solid #ff6347;
-}
+
 
 .cocktailData {
   text-align: center;
@@ -325,4 +311,24 @@ body {
 h5{
     margin:0;
     padding:0;
+}
+@media (hover: hover) {
+  .tag_header:hover {
+    cursor: pointer;
+  }
+  #sidebar a:hover {
+    border-bottom: 2px solid #ff6347;
+  }
+  #heart:hover {
+    animation: 3s Infinite linear heartbeat;
+    animation-delay: 0s, 1s;
+  }
+  #dislike:hover {
+    animation: 3s Infinite linear heartbeat;
+    animation-delay: 0s, 1s;
+  }
+  #ignores:hover {
+    animation: 3s Infinite linear heartbeat;
+    animation-delay: 0s, 1s;
+  }
 }
