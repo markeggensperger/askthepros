@@ -123,6 +123,12 @@ body {
   text-align: center;
   width: 100%;
 }
+.disabled_tag {
+  margin: 3px;
+  text-align: center;
+  width: 100%;
+  opacity: 0.25
+}
 
 .all_tags {
   display: flex;
@@ -313,7 +319,7 @@ h5{
     padding:0;
 }
 @media (hover: hover) {
-  .tag_header:hover {
+  .tag_name:hover {
     cursor: pointer;
   }
   #sidebar a:hover {

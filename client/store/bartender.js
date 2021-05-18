@@ -65,6 +65,12 @@ export const alterDislike = (tagId, nextState) => ({
   tagId, nextState, resetCocktails: true
 })
 
+const valid = (tags, likes, dislikes) => {
+  const validLikes = likes.every(id => !!tags[id])
+  const validDislikes = dislikes.every(id => !tags[id])
+  return validLikes && validDislikes
+}
+
 export default (state = initialState, action) => {
   let cocktails = JSON.parse(JSON.stringify(action.resetCocktails ? initialState.cocktails : state.cocktails))
   let tags = JSON.parse(JSON.stringify(state.tags))
@@ -76,6 +82,8 @@ export default (state = initialState, action) => {
     case LIKE:
       likes.push(action.tagId)
       tags[action.tagId].selection = 'likes'
+      let inAllIdx = all.findIndex(tag => tag.id === action.tagId)
+      if (inAllIdx > -1) all.splice(inAllIdx, 1)
       all.push(tags[action.tagId])
       Object.values(cocktails).forEach(cocktail => {
         if (!cocktail.tags[action.tagId]) {
@@ -108,28 +116,38 @@ export default (state = initialState, action) => {
       let likeIdx = likes.indexOf(action.tagId)
       likes.splice(likeIdx, 1)
       tags[action.tagId].selection = action.nextState
-      let allIdx = all.find(tag => tag.id === action.tagId)
+      let allIdx = all.findIndex(tag => tag.id === action.tagId)
       all.splice(allIdx, 1)
       if (action.nextState === 'dislikes') {
         dislikes.push(action.tagId)
         all.push(tags[action.tagId])
       }
       Object.values(cocktails).forEach(cocktail => {
-        if (likes.some(id => !cocktail.tags[id]) || dislikes.some(id => !!cocktail.tags[id])) delete cocktails[cocktail.id]
+        if (valid(cocktail.tags, likes, dislikes)) {
+          cocktail.tagIds.forEach(tag => {tags[tag].cocktails[cocktail.id] = cocktail.id})
+        } else {
+          cocktail.tagIds.forEach(tag => {delete tags[tag].cocktails[cocktail.id]})
+          delete cocktails[cocktail.id]
+        }
       })
       return {tags, cocktails, selections: {likes, dislikes, all}}
     case ALTER_DISLIKE:
       let dislikeIdx = dislikes.indexOf(action.tagId)
       dislikes.splice(dislikeIdx, 1)
-      let allIdx2 = all.find(tag => tag.id === action.tagId)
+      let allIdx2 = all.findIndex(tag => tag.id === action.tagId)
       all.splice(allIdx2, 1)
+      tags[action.tagId].selection = action.nextState
       if (action.nextState === 'likes') {
         likes.push(action.tagId)
         all.push(tags[action.tagId])
       }
-      tags[action.tagId].selection = action.nextState
       Object.values(cocktails).forEach(cocktail => {
-        if (likes.some(id => !cocktail.tags[id]) || dislikes.some(id => !!cocktail.tags[id])) delete cocktails[cocktail.id]
+        if (valid(cocktail.tags, likes, dislikes)) {
+          cocktail.tagIds.forEach(tag => {tags[tag].cocktails[cocktail.id] = cocktail.id})
+        } else {
+          cocktail.tagIds.forEach(tag => {delete tags[tag].cocktails[cocktail.id]})
+          delete cocktails[cocktail.id]
+        }
       })
       return {tags, cocktails, selections: {likes, dislikes, all}}
     case RESET:

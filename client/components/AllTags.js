@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 // import { select, removeSelection, reset } from '../store/selections';
 import { likeTag, alterLike, alterDislike, reset} from '../store/bartender'
+import SingleTag from './SingleTagForList'
 
 class AllTags extends React.Component {
   constructor(props) {
@@ -33,17 +34,18 @@ class AllTags extends React.Component {
     this.props.history.push('/cocktails/' + cocktails[idx].id);
   }
   render() {
-    const tags = Object.values(this.props.tags);
+    const tags = Object.values(this.props.tags).sort((a, b) => {
+      if (a.tag < b.tag) return -1
+      if (b.tag < a.tag) return 1
+      return 0
+    })
+    // console.log(tags)
     const cocktailCount = Object.keys(this.props.cocktails).length
     return (
       <div>
         <div id="allTags">
           {tags.map((tag) => (
-            <div className={`tag_header ${tag.selection}`} key={tag.id}>
-              <p className="tag_name" onClick={() => this.handleClick(tag)}>
-                {tag.tag}
-              </p>
-            </div>
+            <SingleTag tag={tag} handleClick={this.handleClick} key={tag.id} />
           ))}
         </div>
         <div>

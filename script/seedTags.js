@@ -21,7 +21,6 @@ export default [
   { tag: 'Herbal', type: 'adjective' },
   { tag: 'Simple', type: 'adjective' },
   { tag: 'Complex', type: 'adjective' },
-  { tag: 'Warm', type: 'adjective' },
   { tag: 'Silky', type: 'adjective' },
   { tag: 'Rich', type: 'adjective' },
 ];

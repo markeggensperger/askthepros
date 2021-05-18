@@ -16,13 +16,16 @@ class Bartender extends React.Component {
   nextTag() {
     let n = Object.keys(this.props.cocktails).length
     if (n === 0) return { tag: 'Still Loading' }
-    let next = { id: 0, score: n}
+    let next = { id: null, score: n}
     Object.values(this.props.tags).forEach(tag => {
-      if (tag.selection === 'none') {
-        const score = Math.abs(n / 2 - Object.keys(tag.cocktails).length)
+
+      if (tag.selection === 'none' && tag.cocktails) {
+        let tagN = Object.keys(tag.cocktails).length
+        const score = (tagN > 0 && tagN < n) ? Math.abs(n / 2 - tagN) : n
         if (score < next.score) next = {id: tag.id, score}
       }
     })
+    if (!next.id) return next
     return this.props.tags[next.id]
   }
   handleClick(tag, preference) {
@@ -49,6 +52,7 @@ class Bartender extends React.Component {
       <div>
         <div id="prompt_window">
           <div className="thought">{phrase}</div>
+          {tag.id ? (
           <div id="options">
             <img
               src="/media/heart.png"
@@ -61,9 +65,9 @@ class Bartender extends React.Component {
               onClick={() => this.handleClick(tag, 'ignore')}
               id="ignores"
             />
-          </div>
+          </div>) : '' }
         </div>
-        {cocktailCount < 6 && cocktailCount > 0 ? (
+        {(cocktailCount < 6 && cocktailCount > 0 ) || !tag.id ? (
           <img
             src="/media/thirsty.svg"
             onClick={this.toggleResults}

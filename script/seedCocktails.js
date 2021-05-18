@@ -31,7 +31,7 @@ export default [
   },
   {
     name: `The Aviation`,
-    directions: `2.50 ounces gin, 0.75 ounce fresh lemon juice, 2 or 3 dashes maraschino liqueur, 2.00 ounces gin, 0.75 ounce fresh lemon juice, 0.50 ounce maraschino liqueur, 0.25 ounce Crème de violette or Crème Yvette`,
+    directions: `2.50 ounces gin, 0.75 ounce fresh lemon juice, 2 or 3 dashes maraschino liqueur, 2.00 ounces gin, 0.75 ounce fresh lemon juice, 0.50 ounce maraschino liqueur, 0.24 ounce Crème de violette or Crème Yvette`,
     tagIds: [2, 7, 11, 12, 14, 18, 19, 21],
     imageurl: `https://forgottencocktails.com/wp-content/uploads/sites/2/2015/03/aviation.jpg`,
   },
@@ -110,13 +110,13 @@ export default [
   {
     name: `Chatham Hotel Special`,
     directions: `1.5 ounces brandy, 0.5 ounce ruby port, 0.5 cream, 1 dash dark creme de cacao`,
-    tagIds: [12, 24, 25],
+    tagIds: [12, 3, 24],
     imageurl: `https://forgottencocktails.com/wp-content/uploads/sites/2/2016/02/chathamhotel.jpg`,
   },
   {
     name: `The Coffee Cocktail`,
     directions: `1 ounce brandy (Martell works well), 1 egg, 2 to 3 ounces ruby port, 1 teaspoon sugar`,
-    tagIds: [12, 24],
+    tagIds: [12, 23],
     imageurl: `https://forgottencocktails.com/wp-content/uploads/sites/2/2016/02/coffeecocktail.jpg`,
   },
   {
@@ -182,7 +182,7 @@ export default [
   {
     name: `The Filmograph Cocktail`,
     directions: `2.00 ounces brandy, 0.75 ounce lemon syrup (substitute fresh lemon juice unless you like to drink maple syrup out of the can.), 0.50 ounce kola tonic`,
-    tagIds: [6, 12, 15, 19, 25],
+    tagIds: [6, 12, 15, 19, 24],
     imageurl: `https://forgottencocktails.com/wp-content/uploads/sites/2/2015/10/filmograph.jpg`,
   },
   {
@@ -206,7 +206,7 @@ export default [
   {
     name: `Fogcutter (Early)`,
     directions: `2.0 ounces Barcardi Gold rum, 0.5 ounce Plymouth Gin, 1.0 ounce Pisco Brandy, 1.0 ounce orange juice, 2.0 ounces lemon juice, 0.5 ounce orgeat syrup, 0.5 ounce cream sherry`,
-    tagIds: [2, 3, 11, 12, 17, 24],
+    tagIds: [2, 3, 11, 12, 17, 23],
     imageurl: `https://forgottencocktails.com/wp-content/uploads/sites/2/2014/12/fogcutterearly.jpg`,
   },
   {
@@ -247,7 +247,7 @@ export default [
   },
   {
     name: `Have a Heart Cocktail`,
-    directions: `1.50 ounces gin, 0.75 ounce Swedish Punsch, 0.75 ounce fresh lime juice, 0.25 ounce real pomegranate grenadine`,
+    directions: `1.50 ounces gin, 0.75 ounce Swedish Punsch, 0.75 ounce fresh lime juice, 0.24 ounce real pomegranate grenadine`,
     tagIds: [2, 15, 17, 22],
     imageurl: `https://forgottencocktails.com/wp-content/uploads/sites/2/2014/12/haveaheart.jpg`,
   },
@@ -272,7 +272,7 @@ export default [
   {
     name: `The Japalac Cocktail`,
     directions: `Juice of 1/4 orange, 0.75 ounce dry vermouth, 0.75 ounce rye whiskey, 1 teaspoon raspberry syrup`,
-    tagIds: [1, 7, 9, 15, 17, 22],
+    tagIds: [1, 7, 15, 17, 22],
     imageurl: `https://forgottencocktails.com/wp-content/uploads/sites/2/2015/02/japalac.jpg`,
   },
   {
@@ -332,7 +332,7 @@ export default [
   {
     name: `Milk Punch`,
     directions: `1.0 ounce brandy, 0.5 ounce dark rum, 2 teaspoons simple syrup, 2 dashes vanilla extract, 4.0 ounces whole milk`,
-    tagIds: [3, 12, 19, 24, 25],
+    tagIds: [3, 12, 19, 23, 24],
     imageurl: `https://forgottencocktails.com/wp-content/uploads/sites/2/2016/01/milkpunch.jpg`,
   },
   {
@@ -403,8 +403,8 @@ export default [
   },
   {
     name: `Pink Lady`,
-    directions: `1.5 ounces dry gin, 0.5 ounce applejack, Juice of 1/2 lemon, 1 egg white, 2 dashes real pomegranate grenadine, 1.50 ounces Plymouth gin, 0.50 ounce Laird’s Bonded Apple Brandy, 0.75 ounce lemon juice, 0.75 ounce simple syrup, 1 egg white, 0.25 ounce grenadine`,
-    tagIds: [2, 7, 8, 11, 12, 15, 17, 19, 22, 24],
+    directions: `1.5 ounces dry gin, 0.5 ounce applejack, Juice of 1/2 lemon, 1 egg white, 2 dashes real pomegranate grenadine, 1.50 ounces Plymouth gin, 0.50 ounce Laird’s Bonded Apple Brandy, 0.75 ounce lemon juice, 0.75 ounce simple syrup, 1 egg white, 0.24 ounce grenadine`,
+    tagIds: [2, 7, 8, 11, 12, 15, 17, 19, 22, 23],
     imageurl: `https://forgottencocktails.com/wp-content/uploads/sites/2/2015/11/secretcocktail.jpg`,
   },
   {
@@ -445,7 +445,7 @@ export default [
   },
   {
     name: `The Secret Cocktail`,
-    directions: `1.5 ounces dry gin, 0.5 ounce applejack, Juice of 1/2 lemon, 1 egg white, 2 dashes real pomegranate grenadine, 1.50 ounces Plymouth gin, 0.50 ounce Laird’s Bonded Apple Brandy, 0.75 ounce lemon juice, 0.75 ounce simple syrup, 1 egg white, 0.25 ounce grenadine, 1.0 ounce bourbon (venerable Old Forester was specified), 0.5 ounce Cointreau, 7 dashes  Angostura  bitters, 7 dashes  Peychaud’s  bitters`,
+    directions: `1.5 ounces dry gin, 0.5 ounce applejack, Juice of 1/2 lemon, 1 egg white, 2 dashes real pomegranate grenadine, 1.50 ounces Plymouth gin, 0.50 ounce Laird’s Bonded Apple Brandy, 0.75 ounce lemon juice, 0.75 ounce simple syrup, 1 egg white, 0.24 ounce grenadine, 1.0 ounce bourbon (venerable Old Forester was specified), 0.5 ounce Cointreau, 7 dashes  Angostura  bitters, 7 dashes  Peychaud’s  bitters`,
     tagIds: [1, 2, 7, 8, 11, 12, 17],
     imageurl: `https://forgottencocktails.com/wp-content/uploads/sites/2/2015/11/secretcocktail.jpg`,
   },
@@ -457,7 +457,7 @@ export default [
   },
   {
     name: `Seventh Heaven`,
-    directions: `1.75 ounces gin, 0.50 ounce maraschino liqueur, 0.25 ounce grapefruit juice`,
+    directions: `1.75 ounces gin, 0.50 ounce maraschino liqueur, 0.24 ounce grapefruit juice`,
     tagIds: [2, 11, 14, 18, 21],
     imageurl: `https://forgottencocktails.com/wp-content/uploads/sites/2/2016/02/7thheaven.jpg`,
   },
@@ -470,7 +470,7 @@ export default [
   {
     name: `Soyer au Champagne`,
     directions: `2 dashes maraschino liqueur, 2 dashes pineapple juice, 2 dashes orange curaçao (or Grand Marnier), 2 dashes brandy, champagne, 1 tablespoon vanilla ice cream`,
-    tagIds: [6, 11, 20, 22, 24, 25],
+    tagIds: [6, 11, 20, 22, 23, 24],
     imageurl: `https://forgottencocktails.com/wp-content/uploads/sites/2/2015/01/soyerauchampagne.jpg`,
   },
   {
@@ -548,7 +548,7 @@ export default [
   {
     name: `Bourbon Milk Punch`,
     directions: `1 ½ oz Bourbon, 2 tsp. simple syrup, 2 dashes vanilla extract, 4 oz. milk or half and half`,
-    tagIds: [1, 12, 21, 24, 25],
+    tagIds: [1, 12, 21, 23, 24],
     imageurl: ``,
   },
   {
@@ -560,7 +560,7 @@ export default [
   {
     name: `East New York Flip`,
     directions: `¾ oz Honey, 1 Egg Yolk, ¾ oz Heavy Cream, 1 oz Bourbon, 1 oz Port, Nutmeg, Ground`,
-    tagIds: [1, 12, 21, 24, 25],
+    tagIds: [1, 12, 21, 23, 24],
     imageurl: ``,
   },
   {
@@ -572,7 +572,7 @@ export default [
   {
     name: `Grasshopper Cocktail`,
     directions: `1 oz. Crème de menthe, 1 oz. white crème de cacao, 1 oz. cream`,
-    tagIds: [12, 24],
+    tagIds: [12, 23],
     imageurl: ``,
   },
   {
@@ -614,7 +614,7 @@ export default [
   {
     name: `White Russian`,
     directions: `2 oz Vodka, 1 oz Kaluha, 1 oz Cream`,
-    tagIds: [4, 12, 14, 20, 21, 24],
+    tagIds: [4, 12, 14, 20, 21, 23],
     imageurl: ``,
   },
   {
@@ -764,7 +764,7 @@ export default [
   {
     name: `Ramos gin fizz`,
     directions: `Egg white, 2 oz gin, 1¼ oz Simple syrup, ½ oz Lemon juice, ½ oz Lime juice, 1 oz Cream, Dash orange flower water, Club Soda`,
-    tagIds: [2, 6, 8, 11, 12, 18, 19, 22, 24, 25],
+    tagIds: [2, 6, 8, 11, 12, 18, 19, 22, 23, 24],
     imageurl: ``,
   },
   {
