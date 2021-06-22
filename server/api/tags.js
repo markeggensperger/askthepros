@@ -28,6 +28,7 @@ router.get('/', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     let cocktailIds = req.body.cocktailIds || [];
+    if (cocktailIds.any(id => isNaN(id))) res.sendStatus(201)
     if (cocktailIds.length === 0) {
       cocktailIds = (await Cocktail.findAll()).map((cocktail) => cocktail.id);
     }

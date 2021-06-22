@@ -23,6 +23,7 @@ router.get('/', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     const { likes, dislikes } = req.body;
+    if (likes.any(id => isNaN(id)) || dislikes.any(id => isNaN(id))) res.sendStatus(201)
     const likesWhere = likes.length
       ? `cocktails.id in (
 	    select cocktail_tags."cocktailId" from cocktail_tags

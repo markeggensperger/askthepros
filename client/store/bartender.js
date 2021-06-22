@@ -8,7 +8,6 @@ let i = 1
 tagSeed.forEach(tag => {
   initialTags[i] = tag
   initialTags[i].id = i
-  // initialTags[i].score = 0
   initialTags[i].cocktails = {}
   initialTags[i].selection = 'none'
   i++
@@ -77,7 +76,6 @@ export default (state = initialState, action) => {
   let all = JSON.parse(JSON.stringify(state.selections.all))
   let likes = [...state.selections.likes]
   let dislikes = [...state.selections.dislikes]
-  // let ignores = [...state.selection.ignores]
   switch (action.type) {
     case LIKE:
       likes.push(action.tagId)
